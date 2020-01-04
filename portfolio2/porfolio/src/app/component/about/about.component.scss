@@ -1,0 +1,24 @@
+.glass_effect {
+  background-color: rgba(115, 120, 123, 0.68);
+  box-shadow: 5px -5px 13px #404a4c;
+}
+.info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+   ul li {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+   }
+}
+a{
+  color:white;
+}
+a:hover{
+  color:#007bff;
+}
+
+hr{
+  border : 0.5px solid #007bff;
+}

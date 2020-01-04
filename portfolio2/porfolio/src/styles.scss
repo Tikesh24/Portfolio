@@ -1,0 +1,39 @@
+body, html {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.parallax {
+  /* The image used */
+ //background-image: url('assets/parallax-images/img_parallax4.png');
+
+  /* Full height */
+  height: 100%; 
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.font_0{
+  font-size:6vw;
+  letter-spacing:1vw;
+}
+
+.font_3{
+  font-size: 1.75vw;
+  letter-spacing:1vw;
+}
+
+.font_4{
+  font-size: 1.4vw;
+  letter-spacing:0.2vw;
+}
+
+.font-logo{
+  font-family: 'Pacifico', cursive;
+}
