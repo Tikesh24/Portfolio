@@ -19,7 +19,7 @@
       border-color: white;
   
         &:hover, &:focus {
-          background-color: #007bff;
+          background-color: #014576;
         }
   
   
@@ -32,7 +32,7 @@
     }
   
     .navbar-collapse.collapse.in ul {
-      background-color: #007bff;
+      background-color: #014576;
     }
       
   } //end .navbar-default
@@ -42,7 +42,7 @@
   /* Solid class attached on scroll past first section */
   
   .navbar.solid {
-    background-color: #007bff;
+    background-color: #014576;
     transition: background-color 1s ease-out 0s;
     transition-duration: 0.4s;
     box-shadow: 0 0 4px grey;
