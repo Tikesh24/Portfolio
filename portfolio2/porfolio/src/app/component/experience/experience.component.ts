@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component'
 
 @Component({
   selector: 'app-experience',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExperienceComponent implements OnInit {
 
-  constructor() { }
+  workExperience:any=[];
 
-  ngOnInit() {
+  constructor( private workData: AppComponent ) { 
+    let work = workData.workData;
+    this.workExperience = work;
   }
+
+  ngOnInit() {}
 
 }

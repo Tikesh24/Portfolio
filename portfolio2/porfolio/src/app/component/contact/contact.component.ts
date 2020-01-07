@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-contact',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  basicInfo:any=[];
+  socialInfo:any=[];
+
+  constructor( private contactData: AppComponent ) { 
+    let about = contactData.aboutData;
+    this.basicInfo = about["basic-info"];
+    this.socialInfo = about["social-info"];
+  }
 
   ngOnInit() {
   }

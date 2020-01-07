@@ -1,5 +1,5 @@
-import { Component, OnInit , AfterViewInit } from '@angular/core';
-declare var $:any;
+import { Component, OnInit, HostListener,AfterViewInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +10,30 @@ export class NavigationComponent implements OnInit,AfterViewInit {
 
   constructor() { }
 
-  check:boolean = true;
+  check: boolean = false;
+
+  @HostListener('window:scroll', ['$event'])
+
+  onWindowScroll(e) {
+    let element = document.querySelector('.navbar');
+    if (window.pageYOffset > element.clientHeight) {
+      element.classList.add('solid');
+    } else {
+      element.classList.remove('solid');
+    }
+  }
+
+  changeNavSolid(){
+    let element = document.querySelector('.navbar');
+    if(this.check == false){
+      element.classList.add('solid');
+      this.check = true;
+    }else{
+      element.classList.remove('solid');
+      this.check = false;
+    }
+
+  }
 
   ngAfterViewInit() { 
 
@@ -27,17 +50,17 @@ export class NavigationComponent implements OnInit,AfterViewInit {
     // });
 
     /* Fading and unfading effect */
-    $(document).ready(function() {
-      // Transition effect for navbar 
-      $(window).scroll(function() {
-        // checks if window is scrolled more than 500px, adds/removes solid class
-        if($(this).scrollTop() > 20) { 
-            $('.navbar').addClass('solid');
-        } else {
-            $('.navbar').removeClass('solid');
-        }
-      });
-    });
+    // $(document).ready(function() {
+    //   // Transition effect for navbar 
+    //   $(window).scroll(function() {
+    //     // checks if window is scrolled more than 500px, adds/removes solid class
+    //     if($(this).scrollTop() > 20) { 
+    //         $('.navbar').addClass('solid');
+    //     } else {
+    //         $('.navbar').removeClass('solid');
+    //     }
+    //   });
+    // });
 
     /* Toggling div after nav bar */
 
@@ -60,7 +83,7 @@ export class NavigationComponent implements OnInit,AfterViewInit {
     // Set the offset when entering page with hash present in the url
     window.setTimeout(offsetAnchor, 0);
   }
-  
+
   ngOnInit() {
   }
 

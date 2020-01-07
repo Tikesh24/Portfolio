@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+
+  firstName:string;
+  secondName:string;
+  designation:any = [];
+
+  constructor(private homeData: AppComponent) {
+    
+    let homePage = homeData.homeData;
+    this.firstName = homePage["first-name"];
+    this.secondName = homePage["second-name"];
+    this.designation = homePage["designation"];
+   }
 
   ngOnInit() {
   }

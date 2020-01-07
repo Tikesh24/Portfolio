@@ -4,40 +4,10 @@
             <h3 class="font_3 text-truncate pt-5 pl-5 pb-4"><b><span class="text-primary">|||</span><span class="text-white">WORK</span><span class="text-primary">EXPERIENCE</span></b></h3>
             <div class="col-md-10 offset-md-1">
                 <ul class="timeline pl-3">
-                    <li class="font_4">
-                        <a href="#" >Developer | Digitate</a>
-                        <a class="float-right text-primary">Current</a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula....</p>
-                    </li>
-                    <li class="font_4">
-                        <a href="#">21 000 Job Seekers</a>
-                        <a class="float-right text-primary">4 March, 2014</a>
-                        <p>Curabitur purus sem, malesuada eu luctus eget, suscipit sed turpis. Nam pellentesque felis vitae justo accumsan, sed semper nisi sollicitudin...</p>
-                    </li>
-                    <li class="font_4">
-                        <a href="#">Awesome Employers</a>
-                        <a class="float-right text-primary">1 April, 2014</a>
-                        <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
-                    </li>
-                    <li class="font_4">
-                        <a href="#">Awesome Employers</a>
-                        <a class="float-right text-primary">1 April, 2014</a>
-                        <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
-                    </li>
-                    <li class="font_4">
-                        <a href="#">Awesome Employers</a>
-                        <a class="float-right text-primary">1 April, 2014</a>
-                        <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
-                    </li>
-                    <li class="font_4">
-                        <a href="#">Awesome Employers</a>
-                        <a class="float-right text-primary">1 April, 2014</a>
-                        <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
-                    </li>
-                    <li class="font_4">
-                        <a href="#">Awesome Employers</a>
-                        <a class="float-right text-primary">1 April, 2014</a>
-                        <p>Fusce ullamcorper ligula sit amet quam accumsan aliquet. Sed nulla odio, tincidunt vitae nunc vitae, mollis pharetra velit. Sed nec tempor nibh...</p>
+                    <li class="font_4" *ngFor="let work of workExperience;">
+                        <a href="#" >{{ work["work-place"] | uppercase }} | {{ work["work-type"] | uppercase }}</a>
+                        <a class="float-right text-primary">{{ work["work-duration"] | uppercase }}</a>
+                        <p>{{ work["work-desc"]}} </p>
                     </li>
                 </ul>
             </div>

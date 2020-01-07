@@ -1,11 +1,12 @@
-<div class="parallax" [ngStyle]="{'background-image':'url(../../../assets/parallax-images/parallax5.jpg)','z-index':'1'}">
+<div class="parallax" [ngStyle]="{'background-image':'url(../../../assets/background/parallax5.jpg)','z-index':'1'}">
     <div class="container h-100">
         <div class="row h-100 align-items-center">
           <div class="col-12 text-left">
-            <h1 class="font_0 display-2 font-weight-bold text-white">I<span class="text-primary">'</span>M</h1>
-            <h1 class="font_0 display-2 font-weight-bold text-white">TIKESH</h1>
-            <h1 class="font_0 display-2 font-weight-bold text-white">VERMA<span class="text-primary">.</span></h1>
-            <h3 class="font_3 text-white">DEVELOPER <span class="text-primary">|</span> DESIGNER</h3>
+            <h1 class="font_0 display-3 font-weight-bold text-white">I<span class="text-primary">'</span>M</h1>
+            <h1 class="font_0 display-3 font-weight-bold text-white">{{firstName | uppercase}}</h1>
+            <h1 class="font_0 display-3 font-weight-bold text-white">{{secondName | uppercase}}<span class="text-primary">.</span></h1>
+            <!-- <h3 class="font_3 text-white">DEVELOPER <span class="text-primary">|</span> DESIGNER</h3> -->
+            <h3 class="font_3 text-white"><span *ngFor="let desig of designation; index as i; last as isLast">{{desig | uppercase}}<span class="text-primary" *ngIf="!isLast">|</span></span></h3>
           </div>
         </div>
       </div>

@@ -8,7 +8,7 @@
                         <div class="timeline">
                             <div class="row d-inline-block">
                                 <div class="d-inline-flex"><i class="fa fa-mobile fa-4x text-primary" aria-hidden="true"></i><h4 class="pt-3 pl-3"><b> Phone</b></h4></div>
-                                <p class="font_4"><b>+91 9806020566</b></p>
+                                <p class="font_4"><b>{{basicInfo["phone"]}}</b></p>
                             </div>
                         </div>
                     </div>
@@ -16,7 +16,7 @@
                         <div class="timeline">
                             <div class="row d-inline-block">
                                 <div class="d-inline-flex"><i class="fa fa-envelope fa-4x text-primary"></i><h4 class="pt-3 pl-3"><b> Email</b></h4></div>
-                                <p class="font_4"><b>tikeshverma2494@gmail.com</b></p>
+                                <p class="font_4"><b>{{basicInfo["mail"]}}</b></p>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                         <div class="timeline">
                             <div class="row d-inline-block">
                                 <div class="d-inline-flex"><i class="fa fa-map-marker fa-4x text-primary" aria-hidden="true"></i><h4 class="pt-3 pl-3"><b> Address</b></h4></div>
-                                <p class="font_4"><b>Chhattisgarh, India</b></p>
+                                <p class="font_4"><b>{{basicInfo["address"]}}</b></p>
                             </div>
                         </div>
                     </div>
@@ -53,10 +53,10 @@
                     <ul class="p-0 d-inline-flex">
                         <li><a  class="font-logo pt-1" href="#home">&lt;<span style="color:#00fff7">Being</span><span
                             class="text-white">Bachelor</span> /&gt;</a> | </li>
-                        <li><a href="https://www.facebook.com/tikeshv" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
-                        <li><a href="https://www.instagram.com/tikeshv/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
-                        <li><a href="https://twitter.com/VermaTikesh" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a></li>
-                        <li><a href="https://www.linkedin.com/in/tikesh-verma-165599126/" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                        <li><a href="{{socialInfo['fb']}}" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a></li>
+                        <li><a href="{{socialInfo['insta']}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+                        <li><a href="{{socialInfo['twiter']}}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+                        <li><a href="{{socialInfo['li']}}" target="_blank"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
                     </ul>
                 </div>
             </div>

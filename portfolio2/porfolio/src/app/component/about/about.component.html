@@ -10,29 +10,26 @@
                         </div>
                         <div class="col-md-8 col-sm-6 col-xs-6">
                             <div class="desc font_4 text-white">
-                                <p>Hello! I’m Daniel Curry. Web designer from USA, California, San Francisco. 
-                                    I have rich experience in web site design and building, also I am good at wordpress. 
-                                    I love to talk with you about our unique.I have rich experience in web site design and building, also I am good at wordpress. 
-                                    I love to talk with you about our unique.</p>
+                                <p>{{aboutText}}</p>
                                     <hr>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-md-11">
                                         <div class="info-list">
                                             <ul class="p-0">
-                                                <li><strong><span class="text-primary">Age:</span></strong> 24</li>
-                                                <li><strong><span class="text-primary">Residence:</span></strong> INDIA</li>
-                                                <li><strong><span class="text-primary">Phone:</span></strong>+91 9806020566</li>
-                                                <li><strong><span class="text-primary">E-mail:</span></strong> tikeshverma@gmail.com</li>
+                                                <li><strong><span class="text-primary">Age:</span></strong> {{basicInfo["age"]}}</li>
+                                                <li><strong><span class="text-primary">Residence:</span></strong> {{basicInfo["residence"]}}</li>
+                                                <li><strong><span class="text-primary">Phone:</span></strong> {{basicInfo["phone"]}}</li>
+                                                <li><strong><span class="text-primary">E-mail:</span></strong> {{basicInfo["mail"]}}</li>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col text-right">
+                                    <div class="col-md-1 text-right">
                                         <div class="info-list">
                                             <ul class="p-0">
-                                                <li><a href="https://www.facebook.com/tikeshv" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a></li>
-                                                <li><a href="https://www.instagram.com/tikeshv/" target="_blank"><i class="fa fa-instagram fa-lg"></i></a></li>
-                                                <li><a href="https://twitter.com/VermaTikesh" target="_blank"><i class="fa fa-twitter-square fa-lg"></i></a></li>
-                                                <li><a href="https://www.linkedin.com/in/tikesh-verma-165599126/" target="_blank"><i class="fa fa-linkedin-square fa-lg"></i></a></li>
+                                                <li><a href="{{socialInfo['fb']}}" target="_blank"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a></li>
+                                                <li><a href="{{socialInfo['insta']}}" target="_blank"><i class="fa fa-instagram fa-lg"></i></a></li>
+                                                <li><a href="{{socialInfo['twiter']}}" target="_blank"><i class="fa fa-twitter-square fa-lg"></i></a></li>
+                                                <li><a href="{{socialInfo['li']}}" target="_blank"><i class="fa fa-linkedin-square fa-lg"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
