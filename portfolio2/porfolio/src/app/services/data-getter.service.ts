@@ -1,17 +1,32 @@
-import { Injectable , OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import * as SampleJson from './../../assets/data-source/page-data.json';
 @Injectable({
   providedIn: 'root'
 })
 export class DataGetterService implements OnInit {
 
-  data:any;
-  constructor() { 
-    this.data = SampleJson;
+  data: any;
+
+  constructor(private http: HttpClient) {
+    //this.data = SampleJson;
+    //this.getPageData();
   }
-  getData(){
+
+  getData() {
     return this.data;
   }
+
+  updateFeedback(data) {
+    return this.http.post('http://localhost:4200/server-api/updateFeedback', data);
+  }
+
+  async getPageData() {
+    const result =  await this.http.get('http://localhost:4200/server-api/getPageData').toPromise();
+    return result;
+  }
+
   ngOnInit() {
   }
+
 }

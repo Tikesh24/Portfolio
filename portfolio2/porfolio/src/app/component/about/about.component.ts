@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../../app.component'
-import {  } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit, Input } from '@angular/core';
+import { PortfolioComponent } from '../../portfolio/portfolio.component'
+import { } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-about',
@@ -9,21 +9,19 @@ import {  } from '@fortawesome/free-solid-svg-icons';
 })
 export class AboutComponent implements OnInit {
 
-  aboutText:string;
-  basicInfo:any=[];
-  socialInfo:any=[];
+  @Input() aboutData;
+  aboutText: string;
+  basicInfo: any = [];
+  socialInfo: any = [];
 
-  constructor( private aboutData: AppComponent ) {
-    
-    let about = aboutData.aboutData;
+  constructor() { }
+
+  ngOnInit() {
+    let about = this.aboutData;
     this.aboutText = about["about-text"];
     this.basicInfo = about["basic-info"];
     this.socialInfo = about["social-info"];
     console.log(about);
-   }
-  
-  ngOnInit() {
-  
   }
 
 }

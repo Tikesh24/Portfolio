@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
-<app-home id="home"></app-home>
-<app-about id="about"></app-about>
-<app-skills id="skills"></app-skills>
-<app-experience id="experience"></app-experience>
-<app-contact id="contact"></app-contact>
+<app-home *ngIf="homeData"  [homeData]="homeData" id="home"></app-home>
+<app-about *ngIf="aboutData" [aboutData]='aboutData' id="about"></app-about>
+<app-skills *ngIf="skills" [skillData]="skills" id="skills"></app-skills>
+<app-experience *ngIf="workData" [workData]="workData" id="experience"></app-experience>
+<app-contact *ngIf="contactData.length!=0" [contactData]="contactData" id="contact"></app-contact>

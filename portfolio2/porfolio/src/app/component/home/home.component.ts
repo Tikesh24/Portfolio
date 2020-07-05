@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../../app.component';
+import { Component, OnInit,Input } from '@angular/core';
+import { PortfolioComponent } from '../../portfolio/portfolio.component';
 
 @Component({
   selector: 'app-home',
@@ -8,20 +8,18 @@ import { AppComponent } from '../../app.component';
 })
 export class HomeComponent implements OnInit {
 
-
+  @Input() homeData:any;
   firstName:string;
   secondName:string;
   designation:any = [];
 
-  constructor(private homeData: AppComponent) {
-    
-    let homePage = homeData.homeData;
+  constructor() { }
+
+  ngOnInit() {
+    let homePage = this.homeData;
     this.firstName = homePage["first-name"];
     this.secondName = homePage["second-name"];
     this.designation = homePage["designation"];
-   }
-
-  ngOnInit() {
   }
 
 }
