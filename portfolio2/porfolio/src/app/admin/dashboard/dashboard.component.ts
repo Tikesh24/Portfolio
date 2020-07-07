@@ -9,8 +9,8 @@ export class DashboardComponent implements OnInit {
 
   @Input() userData;
 
-  showPanel:boolean = false;
-  editPanel:boolean = true;
+  showPanel:boolean = true;
+  editPanel:boolean = false;
   feedbackPanel:boolean = false;
 
   constructor() {}
