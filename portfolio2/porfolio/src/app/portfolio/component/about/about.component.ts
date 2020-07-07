@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PortfolioComponent } from '../../portfolio/portfolio.component'
+import { PortfolioComponent } from '../../portfolio.component'
 import { } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

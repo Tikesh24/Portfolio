@@ -7,7 +7,7 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
-app.use(express.static('dist/index.html'))
+//app.use(express.static('dist/index.html'))
 //Put your angular dist folder here
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/server-api', appDetails);

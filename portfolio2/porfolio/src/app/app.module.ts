@@ -7,16 +7,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { ParallaxComponent } from './parallax/parallax.component';
-import { HomeComponent } from './component/home/home.component';
-import { AboutComponent } from './component/about/about.component';
+import { HomeComponent } from './portfolio/component/home/home.component';
+import { AboutComponent } from './portfolio/component/about/about.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ExperienceComponent } from './component/experience/experience.component';
-import { SkillsComponent } from './component/skills/skills.component';
-import { ContactComponent } from './component/contact/contact.component';
+import { ExperienceComponent } from './portfolio/component/experience/experience.component';
+import { SkillsComponent } from './portfolio/component/skills/skills.component';
+import { ContactComponent } from './portfolio/component/contact/contact.component';
 import { BlogCompnentComponent } from './blog/blog-compnent/blog-compnent.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { BlogTimelineComponent } from './blog/blog-timeline/blog-timeline.component';
 import { BlogDetailsComponent } from './blog/blog-details/blog-details.component';
+import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './admin/login/login.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { EditPanelComponent } from './admin/dashboard/edit-panel/edit-panel.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { BlogDetailsComponent } from './blog/blog-details/blog-details.component
     BlogCompnentComponent,
     PortfolioComponent,
     BlogTimelineComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    AdminComponent,
+    LoginComponent,
+    DashboardComponent,
+    EditPanelComponent
   ],
   imports: [
     BrowserModule,

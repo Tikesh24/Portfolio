@@ -1,0 +1,31 @@
+<div class="row pt-1 font_4 text-white">
+    <h3 class="font_3 pt-5 pl-5 pb-4"><b><span class="text-primary">|||</span><span class="text-white">Dash</span><span
+                class="text-primary">Board</span></b></h3>
+    <div class="col-md-10 offset-md-1">
+        <ul class="list-group" *ngIf="showPanel">
+            <li class="list-group-item glass_effect" (click)="togglePanel(showPanel,panel='editPanel')"><i
+                    class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit Portfolio</li>
+            <li class="list-group-item glass_effect" (click)="togglePanel(showPanel,panel='feedbackPanel')"><i
+                    class="fa fa-comments-o" aria-hidden="true"></i> Feedback</li>
+        </ul>
+
+        <div class="jumbotron glass_effect pt-3 pl-3" *ngIf="editPanel">
+            <div class="nav">
+                <h6 class="font_3 nav-item"><b><span class="text-primary"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span><span class="text-white">Edit</span><span class="text-primary">Panel</span></b></h6>
+                <h4 class="font_3 nav-item ml-auto" (click)="togglePanel(showPanel)"><i class="fa fa-home" aria-hidden="true"></i></h4>
+            </div>
+            <div>
+                <app-edit-panel [data]="userData"></app-edit-panel>
+            </div>
+        </div>
+        <div class="jumbotron glass_effect pt-3 pl-3" *ngIf="feedbackPanel" (click)="togglePanel(showPanel)">
+            <div class="nav">
+                <h6 class="font_3"><b><span class="text-primary"><i class="fa fa-comments-o" aria-hidden="true"></i></span><span class="text-white">Feedback</span><span class="text-primary">Panel</span></b></h6>
+                <h4 class="font_3 nav-item ml-auto" (click)="togglePanel(showPanel)"><i class="fa fa-home" aria-hidden="true"></i></h4>
+            </div>
+            <div>
+                <p>Get Your feedback</p>
+            </div>
+        </div>
+    </div>
+</div>

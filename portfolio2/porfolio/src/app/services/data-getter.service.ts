@@ -9,7 +9,7 @@ export class DataGetterService implements OnInit {
   data: any;
 
   constructor(private http: HttpClient) {
-    //this.data = SampleJson;
+    this.data = SampleJson;
     //this.getPageData();
   }
 
@@ -18,11 +18,11 @@ export class DataGetterService implements OnInit {
   }
 
   updateFeedback(data) {
-    return this.http.post('http://localhost:4200/server-api/updateFeedback', data);
+    return this.http.post('/server-api/updateFeedback', data);
   }
 
   async getPageData() {
-    const result =  await this.http.get('http://localhost:4200/server-api/getPageData').toPromise();
+    const result =  await this.http.get('/server-api/getPageData').toPromise();
     return result;
   }
 

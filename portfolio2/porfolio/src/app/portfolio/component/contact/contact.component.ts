@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PortfolioComponent } from '../../portfolio/portfolio.component'
+import { PortfolioComponent } from '../../portfolio.component'
 import { FormGroup,FormControl } from '@angular/forms';
-import { DataGetterService } from './../../services/data-getter.service';
+import { DataGetterService } from '../../../services/data-getter.service';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
