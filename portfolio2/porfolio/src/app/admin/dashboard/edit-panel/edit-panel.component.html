@@ -5,20 +5,17 @@
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav nav">
-                <li class="nav-item">
+                <li class="nav-item" (click)="doEdit(true)">
                     <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" (click)="doEdit(true)">
                     <a class="nav-link" data-toggle="tab" href="#about">About</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" (click)="doEdit(true)">
                     <a class="nav-link" data-toggle="tab" href="#skills">Skills</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" (click)="doEdit(true)">
                     <a class="nav-link" data-toggle="tab" href="#experience">Experience</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#contact">Contact</a>
                 </li>
             </ul>
         </div>
@@ -27,28 +24,261 @@
     <div class="tab-content font_4">
         <div class="tab-pane container active pl-1 pr-1" id="home">
             <div class="font_3 pt-1 text-right pb-1">
-                <span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>
-                <span><i class="fa fa-floppy-o" aria-hidden="true"></i></span>
+                <span><i class="fa fa-pencil-square-o" aria-hidden="true" (click)="doEdit(isEdit)"></i></span>
             </div>
             <div class="glass_effect p-2">
-                
+                <div>
+                    <form [formGroup]="homeFormGroup" (ngSubmit)="onSubmitHome(homeFormGroup.value)">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="firstname">Firstname:</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control h-75 p-1" id="firstname"
+                                    placeholder="{{home['first-name']}}" disabled *ngIf="!isEdit">
+                                <input type="text" class="form-control h-75 p-1" id="firstname"
+                                    value="{{home['first-name']}}" formControlName="firstname" *ngIf="isEdit">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="lastname">Lastname:</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control h-75 p-1" id="lastname"
+                                    placeholder="{{home['second-name']}}" disabled *ngIf="!isEdit">
+                                <input type="text" class="form-control h-75 p-1" formControlName="lastname"
+                                    id="lastname" value="{{home['second-name']}}" *ngIf="isEdit">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="designation">Designation:</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control h-75 p-1" id="designation"
+                                    placeholder="{{home['designation']}}" disabled *ngIf="!isEdit">
+                                <input type="text" class="form-control h-75 p-1" formControlName="designation"
+                                    id="designation" value="{{home['designation']}}" *ngIf="isEdit">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" *ngIf="isEdit"><span><i class="fa fa-floppy-o"
+                                    aria-hidden="true"></i></span> Save</button>
+                    </form>
+                </div>
             </div>
         </div>
 
         <div class="tab-pane container fade pl-1 pr-1" id="about">
-            <p>About Page edit</p>
+            <div class="font_3 pt-1 text-right pb-1">
+                <span><i class="fa fa-pencil-square-o" aria-hidden="true" (click)="doEdit(isEdit)"></i></span>
+            </div>
+            <div class="glass_effect p-2">
+                <div>
+                    <form [formGroup]="aboutFormGroup" (ngSubmit)="onSubmitAbout(aboutFormGroup.value)">
+                        <div class="form-group">
+                            <label for="introduction">Introduction:</label>
+                            <textarea class="form-control" rows="3" id="introduction"
+                                placeholder="{{about['about-text']}}" disabled *ngIf="!isEdit"></textarea>
+                            <textarea class="form-control" rows="3" id="introduction" formControlName="aboutText"
+                                value="{{about['about-text']}}" *ngIf="isEdit"></textarea>
+                        </div>
+                        <label for="basic-info">Basic Information:</label>
+                        <div class="pb-2">
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="address">Address:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="address"
+                                        placeholder="{{about['basic-info']['address']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="address"  id="address"
+                                        value="{{about['basic-info']['address']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="age">Age:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="age"
+                                        placeholder="{{about['basic-info']['age']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="age" id="age"
+                                        value="{{about['basic-info']['age']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="mail">mail:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="mail"
+                                        placeholder="{{about['basic-info']['mail']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="mail" id="mail"
+                                        value="{{about['basic-info']['mail']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="phone">Phone:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="phone"
+                                        placeholder="{{about['basic-info']['phone']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="phone" id="phone"
+                                        value="{{about['basic-info']['phone']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="residence">Residence:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="residence"
+                                        placeholder="{{about['basic-info']['residence']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="residence"
+                                        id="residence" value="{{about['basic-info']['residence']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                        </div>
+                        <label for="social-info">Social Information:</label>
+                        <div class="pb-2">
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="facebook">Facebook:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="facebook"
+                                        placeholder="{{about['social-info']['fb']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="fb" id="facebook"
+                                        value="{{about['social-info']['fb']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="instgram">Instgram:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="instgram"
+                                        placeholder="{{about['social-info']['insta']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="insta" id="instgram"
+                                        value="{{about['social-info']['insta']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="twitter">Twitter:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="twitter"
+                                        placeholder="{{about['social-info']['twiter']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="twiter" id="twitter"
+                                        value="{{about['social-info']['twiter']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row pl-5 pb-1">
+                                <div class="col-md-2">
+                                    <label for="linkedin">LinkedIn:</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control  h-75" id="linkedin"
+                                        placeholder="{{about['social-info']['li']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75" formControlName="li" id="linkedin"
+                                        value="{{about['social-info']['li']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" *ngIf="isEdit"><span><i class="fa fa-floppy-o"
+                                    aria-hidden="true"></i></span> Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane container fade pl-1 pr-1" id="skills">
-            <p>Skills Page edit</p>
-        </div>
-
-        <div class="tab-pane container fade pl-1 pr-1" id="contact">
-            <p>Contact Page edit</p>
+            <div class="font_3 pt-1 text-right pb-1">
+                <span><i class="fa fa-pencil-square-o" aria-hidden="true" (click)="doEdit(isEdit)"></i></span>
+            </div>
+            <div class="glass_effect p-2">
+                <div>
+                    <form>
+                        <div class="row" *ngFor="let skill of skills">
+                            <div class="col-md-2">
+                                <label for="firstname">{{skill['key']}}:</label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="number" class="form-control w-25 h-75 p-1" id="firstname"
+                                    placeholder="{{skill['value']}}" disabled *ngIf="!isEdit">
+                                <input type="number" class="form-control w-25" id="firstname" value="{{skill['value']}}"
+                                    *ngIf="isEdit">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" *ngIf="isEdit"><span><i class="fa fa-floppy-o"
+                                    aria-hidden="true"></i></span> Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="tab-pane container fade pl-1 pr-1" id="experience">
-            <p>Experience Page edit</p>
+            <div class="font_3 pt-1 text-right pb-1">
+                <span><i class="fa fa-pencil-square-o" aria-hidden="true" (click)="doEdit(isEdit)"></i></span>
+            </div>
+            <div class="glass_effect p-2">
+                <div>
+                    <form>
+                        <div *ngFor="let exp of experience">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="firstname">Work-place:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control h-75 p-1" id="workplace"
+                                        placeholder="{{exp['work-place']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75 p-1" id="workplace"
+                                        value="{{exp['work-place']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="firstname">Work-type:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control h-75 p-1" id="worktype"
+                                        placeholder="{{exp['work-type']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75 p-1" id="worktype"
+                                        value="{{exp['work-type']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="firstname">Work-duration:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control h-75 p-1" id="workduration"
+                                        placeholder="{{exp['work-duration']}}" disabled *ngIf="!isEdit">
+                                    <input type="text" class="form-control h-75 p-1" id="workduration"
+                                        value="{{exp['work-duration']}}" *ngIf="isEdit">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="firstname">Work-Description:</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" rows="3" id="workdesc"
+                                        placeholder="{{exp['work-desc']}}" disabled *ngIf="!isEdit"></textarea>
+                                    <textarea class="form-control" rows="3" id="workdesc" value="{{exp['work-desc']}}"
+                                        *ngIf="isEdit"></textarea>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                        <button type="submit" class="btn btn-primary" *ngIf="isEdit"><span><i class="fa fa-floppy-o"
+                                    aria-hidden="true"></i></span> Save</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
