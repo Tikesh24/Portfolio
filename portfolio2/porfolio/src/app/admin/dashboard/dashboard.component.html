@@ -18,13 +18,13 @@
                 <app-edit-panel [data]="userData"></app-edit-panel>
             </div>
         </div>
-        <div class="jumbotron glass_effect pt-3 pl-3" *ngIf="feedbackPanel" (click)="togglePanel(showPanel)">
+        <div class="jumbotron glass_effect pt-3 pl-3" *ngIf="feedbackPanel">
             <div class="nav">
                 <h6 class="font_3"><b><span class="text-primary"><i class="fa fa-comments-o" aria-hidden="true"></i></span><span class="text-white">Feedback</span><span class="text-primary">Panel</span></b></h6>
                 <h4 class="font_3 nav-item ml-auto" (click)="togglePanel(showPanel)"><i class="fa fa-home" aria-hidden="true"></i></h4>
             </div>
             <div>
-                <p>Get Your feedback</p>
+                <app-feedback-panel></app-feedback-panel>
             </div>
         </div>
     </div>

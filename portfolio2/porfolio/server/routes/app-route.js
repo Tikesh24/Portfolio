@@ -18,4 +18,14 @@ router.post('/updateFeedback',(req,res)=>{
   res.send('Successfull');
 })
 
+router.post('/updateUserData',(req,res)=>{
+  var userData = req.body;
+  filehandler.updateUserDataForm(userData) === false ? res.sendStatus(500) : res.sendStatus(200);
+})
+
+router.get('/getFeedBackData', function(req, res, next) {
+  var content = filehandler.readDataFromFile();
+  res.send(content);
+});
+
 module.exports = router;

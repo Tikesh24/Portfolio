@@ -21,7 +21,7 @@ export class PortfolioComponent implements OnInit {
 
   constructor(private pageDataObj: DataGetterService) {
     //this.getPageData();
-    this.setPageData(pageDataObj.data)
+    //this.setPageData(pageDataObj.data)
     //console.log(data.updateFeedback())
   }
 
@@ -37,7 +37,7 @@ export class PortfolioComponent implements OnInit {
     if(pageObj!=undefined){
       this.isPageData = true;
     }
-    this.pageData = pageObj.default;
+    this.pageData = pageObj;
     this.homeData = this.pageData["home-page"];
     this.aboutData = this.pageData["about-page"];
     this.workData = this.pageData["work-experience"];
@@ -47,7 +47,7 @@ export class PortfolioComponent implements OnInit {
   }
   
   ngOnInit() {
-    //this.getPageData();
+    this.getPageData();
   }
 
 }

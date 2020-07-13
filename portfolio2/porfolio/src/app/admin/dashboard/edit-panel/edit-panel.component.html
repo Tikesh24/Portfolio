@@ -201,16 +201,16 @@
             </div>
             <div class="glass_effect p-2">
                 <div>
-                    <form>
-                        <div class="row" *ngFor="let skill of skills">
-                            <div class="col-md-2">
-                                <label for="firstname">{{skill['key']}}:</label>
+                    <form  [formGroup]="skillFormGroup" (ngSubmit)="onSubmitskill(skillFormGroup.value)">
+                        <div class="row" *ngFor="let skill of skills; index as i">
+
+                            <div class="col-md-2" formArrayName="skillControl">
+                                <input type="text" class="form-control h-75 p-1" placeholder="{{skill['key']}}" disabled *ngIf="!isEdit">
+                                <input type="text" class="form-control h-75 p-1" formControlName="{{i}}" value="{{skill['key']}}" *ngIf="isEdit">
                             </div>
-                            <div class="col-md-10">
-                                <input type="number" class="form-control w-25 h-75 p-1" id="firstname"
-                                    placeholder="{{skill['value']}}" disabled *ngIf="!isEdit">
-                                <input type="number" class="form-control w-25" id="firstname" value="{{skill['value']}}"
-                                    *ngIf="isEdit">
+                            <div class="col-md-10" formArrayName="skillValueControl">
+                                <input type="number" class="form-control w-25 h-75 p-1" id="firstname" placeholder="{{skill['value']}}" disabled *ngIf="!isEdit">
+                                <input type="number" class="form-control w-25 h-75 p-1"  formControlName="{{i}}" value="{{skill['value']}}" *ngIf="isEdit">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary" *ngIf="isEdit"><span><i class="fa fa-floppy-o"
@@ -226,49 +226,49 @@
             </div>
             <div class="glass_effect p-2">
                 <div>
-                    <form>
-                        <div *ngFor="let exp of experience">
+                    <form  [formGroup]="experienceFormGroup" (ngSubmit)="onSubmitExperience(experienceFormGroup.value)">
+                        <div *ngFor="let exp of experience;index as i">
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="firstname">Work-place:</label>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-9" formArrayName="workPlace">
                                     <input type="text" class="form-control h-75 p-1" id="workplace"
                                         placeholder="{{exp['work-place']}}" disabled *ngIf="!isEdit">
                                     <input type="text" class="form-control h-75 p-1" id="workplace"
-                                        value="{{exp['work-place']}}" *ngIf="isEdit">
+                                        value="{{exp['work-place']}}" formControlName="{{i}}" *ngIf="isEdit">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="firstname">Work-type:</label>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-9" formArrayName="workType">
                                     <input type="text" class="form-control h-75 p-1" id="worktype"
                                         placeholder="{{exp['work-type']}}" disabled *ngIf="!isEdit">
                                     <input type="text" class="form-control h-75 p-1" id="worktype"
-                                        value="{{exp['work-type']}}" *ngIf="isEdit">
+                                        value="{{exp['work-type']}}" formControlName="{{i}}" *ngIf="isEdit">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="firstname">Work-duration:</label>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-9"  formArrayName="workDuration">
                                     <input type="text" class="form-control h-75 p-1" id="workduration"
                                         placeholder="{{exp['work-duration']}}" disabled *ngIf="!isEdit">
                                     <input type="text" class="form-control h-75 p-1" id="workduration"
-                                        value="{{exp['work-duration']}}" *ngIf="isEdit">
+                                        value="{{exp['work-duration']}}" formControlName="{{i}}" *ngIf="isEdit">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <label for="firstname">Work-Description:</label>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="col-md-9"  formArrayName="workDesc">
                                     <textarea class="form-control" rows="3" id="workdesc"
                                         placeholder="{{exp['work-desc']}}" disabled *ngIf="!isEdit"></textarea>
-                                    <textarea class="form-control" rows="3" id="workdesc" value="{{exp['work-desc']}}"
+                                    <textarea class="form-control" rows="3" formControlName="{{i}}" id="workdesc" value="{{exp['work-desc']}}"
                                         *ngIf="isEdit"></textarea>
                                 </div>
                             </div>

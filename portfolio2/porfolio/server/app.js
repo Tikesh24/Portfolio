@@ -11,5 +11,9 @@ app.use(bodyParser.urlencoded({'extended':'false'}));
 //Put your angular dist folder here
 app.use(express.static(path.join(__dirname, '../dist')));
 app.use('/server-api', appDetails);
+app.use('*',(req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
+  });
+
 
 module.exports = app;

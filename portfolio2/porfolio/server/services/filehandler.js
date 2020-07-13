@@ -4,7 +4,6 @@ const fs = require('fs');
 
 //1. User data 
 readPageData = () =>{
-    console.log("Reading file")
     var contents = fs.readFileSync(__dirname+'/../app_data/user_data/page-data.json');
     return contents;
 }
@@ -22,23 +21,32 @@ upDateFeedback = (data)=>{
 
 //2. Read feedback files 
 readDataFromFile = ()=> {
-    console.log("Reading file")
     var contents = fs.readFileSync(__dirname+'/../app_data/feedback/feedback.json');
-    console.log(JSON.parse(contents))
     return contents;
 }
 
 //3. Write feedback on files
 writeDataOnFile = (data)=>{
-    console.log(data)
     fs.writeFile(__dirname+'/../app_data/feedback/feedback.json',data,(err)=>{
         if (err) throw err;
-        console.log("file saved")
     });
+}
+
+
+updateUserDataForm = (data)=>{
+    if(Object.keys(data).length === 0){return false}
+    var key = data['key'];
+    var addData = data[key];
+    var pageData = JSON.parse(readPageData());  
+    pageData[key] = addData;
+    fs.writeFile(__dirname+'/../app_data/user_data/page-data.json',JSON.stringify(pageData),(err)=>{
+        if (err) {throw err; return false};
+    });
+    return true;
 }
 
 //######################################FeedBack##############
 
 
 
-module.exports = {upDateFeedback,readPageData}
+module.exports = {upDateFeedback,readPageData,updateUserDataForm,readDataFromFile}

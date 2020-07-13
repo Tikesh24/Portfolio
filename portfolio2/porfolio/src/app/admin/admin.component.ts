@@ -9,12 +9,29 @@ import { DataGetterService } from '../services/data-getter.service';
 export class AdminComponent implements OnInit {
 
   pageData:any;
+  isPageData:boolean = false;
 
   constructor(private pageDataObj: DataGetterService) { 
-    this.pageData = pageDataObj.data.default;
+
+  }
+
+  getPageData() {
+    this.pageDataObj.getPageData().then(result => {
+      this.setPageData(result);
+    }, error => {
+      console.error(error);
+    })
+  }
+
+  setPageData(pageObj: any) {
+    if(pageObj!=undefined){
+      this.isPageData = true;
+    }
+    this.pageData = pageObj;
   }
 
   ngOnInit() {
+    this.getPageData();
   }
 
 }

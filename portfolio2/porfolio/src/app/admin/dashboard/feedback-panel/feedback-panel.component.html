@@ -1,0 +1,21 @@
+<div id="accordion">
+    <div class="card glass_effect font_4" *ngFor="let feed of feedBack;index as i">
+        <a class="collapsed text-decoration-none" data-toggle="collapse" href="#feed{{i}}">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6><i class="fa fa-user" aria-hidden="true"></i> {{feed['name']}} <small class="font-weight-lighter font-italic text-white">{{feed['email']}}</small></h6>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class='text-right'><i class="fa fa-calendar" aria-hidden="true"></i></h6>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div id="feed{{i}}" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                {{feed['message']}}
+            </div>
+        </div>
+    </div>
+</div>

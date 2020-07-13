@@ -21,6 +21,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './admin/login/login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { EditPanelComponent } from './admin/dashboard/edit-panel/edit-panel.component';
+import { FeedbackPanelComponent } from './admin/dashboard/feedback-panel/feedback-panel.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EditPanelComponent } from './admin/dashboard/edit-panel/edit-panel.comp
     AdminComponent,
     LoginComponent,
     DashboardComponent,
-    EditPanelComponent
+    EditPanelComponent,
+    FeedbackPanelComponent
   ],
   imports: [
     BrowserModule,

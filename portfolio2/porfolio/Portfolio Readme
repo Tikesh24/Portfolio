@@ -2,3 +2,8 @@ Background images for scrolling effect(parallax effect)
     > Add images to src/assets/parallax-images
 
 Header > font_3
+
+
+to revert - admin.component.html - isPageData,pageData as true
+            dashboard.component.html - uncomment edit panel
+            

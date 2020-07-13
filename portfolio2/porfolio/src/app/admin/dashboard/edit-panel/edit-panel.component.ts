@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { DataGetterService } from '../../../services/data-getter.service';
 
 @Component({
   selector: 'app-edit-panel',
@@ -8,13 +9,13 @@ import { FormGroup,FormControl } from '@angular/forms';
 })
 export class EditPanelComponent implements OnInit {
 
-  @Input() data:any; 
+  @Input() data: any;
 
-  isEdit:boolean = false;
-  home:any;
-  about:any;
-  skills:any;
-  experience:any;
+  isEdit: boolean = false;
+  home: any;
+  about: any;
+  skills: any;
+  experience: any;
 
   homeFormGroup = new FormGroup({
     firstname: new FormControl(''),
@@ -36,47 +37,69 @@ export class EditPanelComponent implements OnInit {
   });
 
   skillFormGroup = new FormGroup({
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    designation: new FormControl('')
+    skillControl: new FormArray([]),
+    skillValueControl: new FormArray([])
   });
 
-  constructor() { }
+  experienceFormGroup = new FormGroup({
+    workPlace: new FormArray([]),
+    workType: new FormArray([]),
+    workDuration: new FormArray([]),
+    workDesc: new FormArray([])
+  });
+
+  constructor(private dataSetter: DataGetterService) { }
 
   ngOnInit() {
-    
-    this.home = this.data["home-page"];
-    this.about = this.data["about-page"];
-    this.skills = this.data["skill-page"];
-    this.experience = this.data["work-experience"];
-    this.setHomeData();
-    this.setAboutData()
-    console.log(this.data)
+    this.setPageData(this.data);
   }
 
-  doEdit(isOpt){
-    isOpt == true?this.isEdit = false:this.isEdit = true;
+  setPageData(dataObj){
+    this.home = dataObj["home-page"];
+    this.about = dataObj["about-page"];
+    this.skills = dataObj["skill-page"];
+    this.experience = dataObj["work-experience"];
+    this.setHomeData();
+    this.setAboutData();
+    this.setSkillData();
+    this.setExperienceData()
+    console.log(dataObj)
+  }
+  
+  doEdit(isOpt) {
+    isOpt == true ? this.isEdit = false : this.isEdit = true;
   }
 
   //######################################### Home Data #################################
-  setHomeData(){
+  setHomeData() {
+    this.homeFormGroup.reset();
     this.homeFormGroup.controls['firstname'].setValue(this.home['first-name']);
     this.homeFormGroup.controls['lastname'].setValue(this.home['second-name']);
     this.homeFormGroup.controls['designation'].setValue(this.home['designation'].join());
   }
 
-  onSubmitHome(formData){
-    let homeObj = [];
+  onSubmitHome(formData) {
+    let homePageObj = {};
+    let homeObj = {};
     homeObj['first-name'] = formData['firstname'];
     homeObj['second-name'] = formData['lastname'];
     homeObj['designation'] = formData['designation'].split(',');
-    console.log(homeObj);
+    homePageObj['home-page'] = homeObj;
+    homePageObj['key'] = 'home-page';
+    this.dataSetter.updateUserData(homePageObj).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    })
+    this.data['home-page'] = homeObj;
+    this.setPageData(this.data)
     this.isEdit = false;
   }
   //######################################### Home Data #################################
 
   //######################################### About Data #################################
-  setAboutData(){
+  setAboutData() {
+    this.aboutFormGroup.reset();
     this.aboutFormGroup.controls['aboutText'].setValue(this.about['about-text']);
     this.aboutFormGroup.controls['address'].setValue(this.about['basic-info']['address']);
     this.aboutFormGroup.controls['age'].setValue(this.about['basic-info']['age']);
@@ -89,7 +112,7 @@ export class EditPanelComponent implements OnInit {
     this.aboutFormGroup.controls['li'].setValue(this.about['social-info']['li']);
   }
 
-  onSubmitAbout(formData){
+  onSubmitAbout(formData) {
     let aboutObj = {};
     aboutObj['about-text'] = formData['aboutText'];
     let basiInfo = {};
@@ -104,10 +127,111 @@ export class EditPanelComponent implements OnInit {
     socialInfo['insta'] = formData['insta'];
     socialInfo['twiter'] = formData['twiter'];
     socialInfo['li'] = formData['li'];
-    aboutObj['social-info'] = socialInfo
-
-    console.log(aboutObj);
+    aboutObj['social-info'] = socialInfo;
+    
+    let aboutDataObj ={};
+    aboutDataObj['key'] = 'about-page';
+    aboutDataObj['about-page'] = aboutObj;
+    //this.dataSetter.updateUserData(aboutObj);
+    this.dataSetter.updateUserData(aboutDataObj).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    })
+    this.data["about-page"] = aboutObj;
+    this.setPageData(this.data);
     this.isEdit = false;
   }
   //######################################### About Data #################################
+
+  //######################################### Skill Data #################################
+  setSkillData() {
+    this.skillFormGroup.reset();
+    (this.skillFormGroup.controls.skillControl as FormArray).clear();
+    (this.skillFormGroup.controls.skillValueControl as FormArray).clear();
+    this.skills.forEach((o, i) => {
+      const control = new FormControl(i);
+      control.setValue(o['key']);
+      (this.skillFormGroup.controls.skillControl as FormArray).push(control);
+
+      const controlValue = new FormControl(i);
+      controlValue.setValue(o['value']);
+      (this.skillFormGroup.controls.skillValueControl as FormArray).push(controlValue);
+    });
+  }
+
+  onSubmitskill(formData) {
+    let skillObj = {};
+    let skillArray = [];
+    formData['skillControl'].forEach((o, i) => {
+      let skill = {};
+      skill['key'] = o;
+      skill['value'] = formData['skillValueControl'][i] + ""
+      skillArray.push(skill)
+    })
+    skillObj['skill-page'] = skillArray;
+    skillObj['key'] = 'skill-page';
+    //this.dataSetter.updateUserData(skillObj);
+    this.dataSetter.updateUserData(skillObj).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    })
+    this.data['skill-page'] = skillArray;
+    this.setPageData(this.data);
+    this.isEdit = false;
+  }
+  //######################################### Skill Data #################################
+
+  //######################################### Experience Data #################################
+  setExperienceData() {
+    this.experienceFormGroup.reset();
+    (this.experienceFormGroup.controls.workPlace as FormArray).clear();
+    (this.experienceFormGroup.controls.workType as FormArray).clear();
+    (this.experienceFormGroup.controls.workDuration as FormArray).clear();
+    (this.experienceFormGroup.controls.workDesc as FormArray).clear();
+
+    this.experience.forEach((o, i) => {
+      const place = new FormControl(i);
+      place.setValue(o['work-place']);
+      (this.experienceFormGroup.controls.workPlace as FormArray).push(place);
+
+      const type = new FormControl(i);
+      type.setValue(o['work-type']);
+      (this.experienceFormGroup.controls.workType as FormArray).push(type);
+
+      const duration = new FormControl(i);
+      duration.setValue(o['work-duration']);
+      (this.experienceFormGroup.controls.workDuration as FormArray).push(duration);
+
+      const descrp = new FormControl(i);
+      descrp.setValue(o['work-desc']);
+      (this.experienceFormGroup.controls.workDesc as FormArray).push(descrp);
+    });
+  }
+
+  onSubmitExperience(formData) {
+    let experienceObj = {};
+    let expArray = [];
+    formData['workPlace'].forEach((o, i) => {
+      let workExp = {};
+      workExp['work-place'] = o;
+      workExp['work-type'] = formData['workType'][i];
+      workExp['work-duration'] = formData['workDuration'][i];
+      workExp['work-desc'] = formData['workDesc'][i];
+      expArray.push(workExp)
+    })
+    experienceObj['work-experience'] = expArray;
+    experienceObj['key'] = 'work-experience';
+    //this.dataSetter.updateUserData(experienceObj);
+    this.dataSetter.updateUserData(experienceObj).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+    })
+    this.data['work-experience'] = expArray;
+    this.setPageData(this.data)
+    this.isEdit = false;
+  }
+  //######################################### Experience Data #################################
 }
