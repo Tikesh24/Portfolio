@@ -10,10 +10,12 @@ export class DataGetterService implements OnInit {
   data: any;
   feedback:any;
   constructor(private http: HttpClient) {
-    //this.data = SampleJson;
+    // this.data = SampleJson;
     this.feedback = feedbackjson;
     
   }
+
+  envDetails = "http://localhost:4300";
 
   getData() {
     return this.data;

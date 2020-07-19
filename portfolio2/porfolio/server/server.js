@@ -2,7 +2,7 @@ var app = require('./app.js');
 var debug = require('debug')('mean-app:server');
 var http = require('http');
 
-var port = process.env.PORT || '4200';
+var port = process.env.PORT || '4300';
 app.set('port', port);
 
 var server = http.createServer(app);

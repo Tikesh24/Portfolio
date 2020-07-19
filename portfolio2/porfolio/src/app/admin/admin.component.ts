@@ -12,7 +12,7 @@ export class AdminComponent implements OnInit {
   isPageData:boolean = false;
 
   constructor(private pageDataObj: DataGetterService) { 
-
+    //this.pageData = pageDataObj.data.default;
   }
 
   getPageData() {

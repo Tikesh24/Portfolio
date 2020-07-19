@@ -12,10 +12,15 @@ export class EditPanelComponent implements OnInit {
   @Input() data: any;
 
   isEdit: boolean = false;
+  isChecked: boolean = false;
   home: any;
   about: any;
   skills: any;
   experience: any;
+  htmlElement:HTMLElement;
+
+  skillControl = new FormArray([]);
+  skillValueControl = new FormArray([]);
 
   homeFormGroup = new FormGroup({
     firstname: new FormControl(''),
@@ -37,8 +42,8 @@ export class EditPanelComponent implements OnInit {
   });
 
   skillFormGroup = new FormGroup({
-    skillControl: new FormArray([]),
-    skillValueControl: new FormArray([])
+    skillControl:this.skillControl,
+    skillValueControl:this.skillValueControl
   });
 
   experienceFormGroup = new FormGroup({
@@ -181,6 +186,39 @@ export class EditPanelComponent implements OnInit {
     this.setPageData(this.data);
     this.isEdit = false;
   }
+
+  removeSkil(event){
+    var target = event.target || event.srcElement || event.currentTarget;
+    target.className = 'fa fa-minus-square fa-lg text-danger';
+    var index = (target.attributes.id.nodeValue).slice(5);
+    console.log("To delete index:"+index);
+    (this.skillFormGroup.controls.skillControl as FormArray).removeAt(index);
+    (this.skillFormGroup.get("skillValueControl") as FormArray).removeAt(index);
+    
+  }
+
+  addSkill(index){
+    console.log(index)
+    const control = new FormControl(index+1);
+    control.setValue('New skill');
+    (this.skillFormGroup.get("skillControl") as FormArray).push(control);
+   // (this.skillFormGroup.controls.skillControl as FormArray).push(control);
+
+    const controlValue = new FormControl(index+1);
+    controlValue.setValue('Skill value');
+    (this.skillFormGroup.get("skillValueControl") as FormArray).push(controlValue);
+
+    let skillObj =  this.data['skill-page'];
+    // let skillArray = [];
+    let skill = {};
+    skill['key'] = "New Skill";
+    skill['value'] = "0";
+    skillObj.push(skill)
+    // skillObj['skill-page'] = skillArray;
+     this.data['skill-page'] = skillObj;
+    // this.setPageData(this.data);
+  }
+
   //######################################### Skill Data #################################
 
   //######################################### Experience Data #################################
@@ -232,6 +270,46 @@ export class EditPanelComponent implements OnInit {
     this.data['work-experience'] = expArray;
     this.setPageData(this.data)
     this.isEdit = false;
+  }
+
+  removeExperience(event){
+    var target = event.target || event.srcElement || event.currentTarget;
+    target.className = 'fa fa-minus-square fa-lg text-danger';
+    var index = (target.attributes.id.nodeValue).slice(5);
+    console.log("To delete index:"+index);
+    (this.experienceFormGroup.controls.workPlace as FormArray).removeAt(index);
+    (this.experienceFormGroup.controls.workType as FormArray).removeAt(index);
+    (this.experienceFormGroup.controls.workDuration as FormArray).removeAt(index);
+    (this.experienceFormGroup.controls.workDesc as FormArray).removeAt(index);
+  }
+
+  addExperience(index){
+
+    const place = new FormControl(index);
+    place.setValue("Place");
+    (this.experienceFormGroup.controls.workPlace as FormArray).push(place);
+
+    const type = new FormControl(index);
+    type.setValue("Type");
+    (this.experienceFormGroup.controls.workType as FormArray).push(type);
+
+    const duration = new FormControl(index);
+    duration.setValue("Duration");
+    (this.experienceFormGroup.controls.workDuration as FormArray).push(duration);
+
+    const descrp = new FormControl(index);
+    descrp.setValue("Description");
+    (this.experienceFormGroup.controls.workDesc as FormArray).push(descrp);
+
+    let expArray = this.data['work-experience'];
+    let workExp = {};
+    workExp['work-place'] = "Place";
+    workExp['work-type'] = "Type";
+    workExp['work-duration'] = "Duration";
+    workExp['work-desc'] = "Designation";
+    expArray.push(workExp);
+    this.data['work-experience'] = expArray;
+    
   }
   //######################################### Experience Data #################################
 }
